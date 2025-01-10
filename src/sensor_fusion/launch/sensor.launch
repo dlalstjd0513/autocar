@@ -1,0 +1,35 @@
+<launch>
+  <!-- ublox_device 노드 포함 -->
+  <include file="$(find ublox_gps)/launch/ublox_device.launch">
+    <arg name="param_file_name" value="zed_f9p" />
+    <arg name="param_file_dir" value="$(find ublox_gps)/config" />
+  </include>
+
+  <!-- iahrs_driver 노드 포함 -->
+  <include file="$(find iahrs_driver)/launch/iahrs_driver.launch">
+  </include>
+
+  <!-- 센서 융합 노드 -->
+  <node pkg="sensor_fusion" type="sensor_fusion_node.py" name="sensor_fusion_node" output="screen"  
+        args="$(find sensor_fusion)/scripts/sensor_fusion_node.py">
+    <param name="use_sim_time" value="false"/>
+  </node>
+
+  <!-- 정적 트랜스폼 설정 -->
+  <node pkg="tf" type="static_transform_publisher" name="imu_to_base_link"
+        args="0 0 0 0 0 0 base_link imu_link 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="gps_to_base_link"
+        args="0 0 0 0 0 0 base_link gps_link 100" />
+   
+  <!-- path_publisher 노드 추가-->
+  <node pkg="sensor_fusion" type="path.py" name="path_publisher" output="screen"  
+        args="$(find sensor_fusion)/scripts/path.py">
+    <param name="use_sim_time" value="false"/>
+  </node>  
+
+  <!-- Mapviz 노드 추가 -->     
+  <include file="$(find mapviz)/launch/mapviz.launch">
+  </include>     
+</launch>
+

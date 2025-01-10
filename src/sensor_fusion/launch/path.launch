@@ -1,0 +1,13 @@
+<launch>
+  <!-- ublox_device 노드 포함 -->
+  <include file="$(find ublox_gps)/launch/ublox_device.launch">
+    <arg name="param_file_name" value="zed_f9p" />
+    <arg name="param_file_dir" value="$(find ublox_gps)/config" />
+  </include>
+
+  <!-- iahrs_driver 노드 포함 -->
+  <include file="$(find iahrs_driver)/launch/iahrs_driver.launch">
+  </include>
+     
+</launch>
+

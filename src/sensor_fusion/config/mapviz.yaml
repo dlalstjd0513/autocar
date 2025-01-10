@@ -1,0 +1,11 @@
+layers:
+  - name: "Odometry"
+    topic: "/odometry/filtered"  # EKF 필터의 융합된 위치 정보
+    draw_style: "lines"
+  - name: "GPS Fix"
+    topic: "/ublox/fix"  # GPS 위치 정보
+    draw_style: "points"
+  - name: "IMU Data"
+    topic: "/imu/data"  # IMU의 회전 정보
+    draw_style: "points"
+

@@ -1,0 +1,11 @@
+<launch>
+  <!-- Motor node using geometry_msgs/Twist -->
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+    <param name="port" value="/dev/ttyACM0" />
+    <param name="baud" value="57600" />
+  </node>
+
+  <!-- My node for lane detection and stop line detection -->
+  <node name="lane_drive_node" pkg="l2y_package" type="hough.py" output="screen" />
+</launch>
+

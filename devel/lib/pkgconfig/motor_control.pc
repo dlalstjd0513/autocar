@@ -1,0 +1,8 @@
+prefix=/home/l2y/l2y_ws/devel
+
+Name: motor_control
+Description: Description of motor_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,2 @@
+iahrs_driver:l2y_package:mapviz/mapviz:mapviz/mapviz_plugins:mapviz/multires_image:mapviz/tile_map:motor_control:sensor_fusion:ublox/ntrip_ros:ublox/rtcm_msgs:ublox/ublox:ublox/ublox_gps:ublox/ublox_msg_filters:ublox/ublox_msgs:ublox/ublox_serialization
+-DCATKIN_DEVEL_PREFIX=/home/l2y/l2y_ws/devel -DCMAKE_INSTALL_PREFIX=/home/l2y/l2y_ws/install -G Unix Makefiles

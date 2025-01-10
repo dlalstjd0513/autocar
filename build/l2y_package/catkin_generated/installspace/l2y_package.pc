@@ -1,0 +1,8 @@
+prefix=/home/l2y/l2y_ws/install
+
+Name: l2y_package
+Description: Description of l2y_package
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

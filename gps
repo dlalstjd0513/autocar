@@ -1,0 +1,76 @@
+gps
+
+https://www.ardusimple.com/how-to-use-ardusimple-rtk-receivers-and-get-gps-data-in-ros/
+source ~/ygn_ws/devel/setup.bash
+git clone https://github.com/KumarRobotics/ublox
+
+rtcm 깔려 있지 않을경우는 sudo apt-get install ros-noetic-rtcm-msgs
+
+roslaunch ublox_gps ublox_device.launch param_file_name:=zed_f9p
+ sudo chmod 666 /dev/ttyACM0
+
+
+de
+
+
+docker
+https://hm02123.tistory.com/14
+sudo usermod -aG docker $USER
+sudo docker run -p 8080:8080 -d -t -v ~/mapproxy:/mapproxy danielsnider/mapproxy
+
+sudo lsof -i :8080
+sudo systemctl restart docker
+sudo kill -9 pid
+
+
+mapviz
+
+https://swri-robotics.github.io/mapviz/
+
+git clone -b master https://github.com/swri-robotics/mapviz.git
+
+rosdep install --from-paths src --ignore-src
+
+roslaunch mapviz mapviz.launch
+
+
+
+cd
+imu
+
+cd ~/catkin_ws/src
+
+git clone https://github.com/wookbin/iahrs_driver
+
+
+iagrs_drive.cpp --->
+#define SERIAL_PORT"/dev/ttyUSB0"
+
+377 ,390 번줄 imu_link ----> map  <----이거는 상황에따라 
+
+ catkin_make
+ source devel/setup.bash
+ roslaunch iahrs_driver iahrs_driver.launch
+ 
+ 
+ 
+ fusion
+ 
+ 
+ roslaunch sensor_fusion sensor.launch 
+ 
+ path 생성
+ 
+ config 들어가서  꼭!! 필수는 아니지만 파일 정리하기 위해서!!
+ cd ~/l2y_ws/src/sensor_fusion/config
+ roslaunch sensor_fusion path.launch
+ rosbag record /ublox/fix /imu/data
+ rosrun sensor_fusion waypoint.py
+
+ rostopic echo -b b.bag -p /ublox/fix > gps_data.csv
+rostopic echo -b b.bag -p /imu/data > imu_data.csv
+
+ 
+ 
+ 
+ 
